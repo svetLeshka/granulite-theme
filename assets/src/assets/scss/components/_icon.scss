@@ -1,0 +1,40 @@
+.icon {
+	display: inline-block;
+	&_plus-sign {
+		width: 22px;
+		height: 3px;
+		position: relative;
+		&::before,
+		&::after {
+			content: '';
+			width: 22px;
+			height: 3px;
+			background-color: $color-main;
+			border-radius: 0.3px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transition: transform 0.5s linear, background-color 0.2s linear;
+		}
+		&::before {
+			transform: translateX(-50%) translateY(-50%);
+		}
+		&::after {
+			transform: translateX(-50%) translateY(-50%) rotate(90deg);
+		}
+	}
+	&_open-acc {
+		width: 40px;
+		height: 40px;
+		border-radius: 3px;
+		background-color: #EC6839;
+		justify-content: center;
+		align-items: center;
+		&::before {
+			font-size: 13px;
+			color: #fff;
+			transform: rotate(135deg);
+			transition: transform 0.2s linear;
+		}
+	}
+}

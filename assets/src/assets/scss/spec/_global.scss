@@ -1,0 +1,78 @@
+*:focus {
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+html {
+	&._scroll-behavior {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: 400;
+	color: $color-main;
+	&._lock {
+		overflow: hidden;
+	}
+}
+
+@include media-down(md) {
+	body {
+		font-size: 14px;
+		line-height: 20px;
+	}
+}
+
+main {
+	&._fixed-header {
+		margin-top: 140px;
+	}
+	@include media-down(md) {
+		&._fixed-header {
+			@include adaptive-property(margin-top, 80, 120, 320, 768);
+		}
+	}
+}
+
+._visually-hidden {
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	border: 0;
+	padding: 0;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	margin: -1px;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.observable {
+	position: absolute;
+	left: 0;
+	top: 0;
+	max-height: 1080px;
+	height: calc(100vh - 140px);
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	z-index: -100;
+}
+
+.hide {
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.bg-featured {
+	background: linear-gradient(90deg, $color-orange 0%, #E23445 50%, $color-pink 100%);
+}
