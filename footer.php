@@ -2,11 +2,11 @@
 <footer class="footer">
 		<div class="container">
 			<div class="footer__wrapper">
-				<a href="#!"><img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/logo.svg" alt="logo"></a>
+				<a href="#!"><img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/logo.svg" alt="logo"></a>
 				<div>
 					<div></div>
 					<div>
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-tel.svg" alt="telephone">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-tel.svg" alt="telephone">
 						<div>
                             <?php if($footer['phones']) : ?>
                                 <?php foreach ($footer['phones'] as $phone) : ?>
@@ -24,7 +24,7 @@
 					</div>
 					<div>
                         <?php if($footer['address']): ?>
-						    <img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-location.svg" alt="location">
+						    <img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-location.svg" alt="location">
 						    <p><?= $footer['address']; ?></p>
                         <?php endif; ?>
 					</div>

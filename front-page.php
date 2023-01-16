@@ -1,80 +1,99 @@
 <?php get_header(); ?>
 <main>
-    <?php
-        $banner = get_field('banner');
-    ?>
-		<div class="main-video">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/videos/main-video.gif" alt="main-video" class="main-video__video">
-			<div class="container main-video__text-cntnr">
-				<h1 class="main-video__text">
-                    <?php echo $banner['title']; ?>
-                </h1>
-			</div>
+    <?php $banner = get_field('banner'); ?>
+	<div class="main-video">
+		<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/videos/main-video.gif" alt="main-video" class="main-video__video">
+		<div class="container main-video__text-cntnr">
+			<h1 class="main-video__text">
+				<?= $banner['title']; ?>
+			</h1>
 		</div>
-		<div class="about">
-			<div class="container">
-				<div class="about__wrapper">
-					<div class="about__comp">
-						<div class="about__title-wrapper">
-							<p class="about__title-about">About company</p>
-							<h2 class="about__title">GRANULITE</h2>
-						</div>
-						<div class="about__text-wrapper">
-							<p>Introducing energy-efficient lightweight aggregates - mineral microspheres, with a closed spherical shell and zero water absorption. They are used as components and additives in the production of goods and materials with light weight and resistance to high temperatures and high pressures. Microsphere-based products are used in the "Green Building" industry, in the production of composite materials with unique insulating properties.</p>
-							<p>Our company supplies microspheres with more than 10 years of proven experience of successful application in industry - since 2010 GRANULITE microspheres have been accredited by producers of insulating, refractory materials and leading global energy service companies.</p>
-						</div>
+	</div>
+	<?php $about = get_field('about'); ?>
+	<?php if($about) : ?>
+	<div class="about">
+		<div class="container">
+			<div class="about__wrapper">
+				<div class="about__comp">
+					<div class="about__title-wrapper">
+						<?php if($about['subtitle']) : ?>
+							<p class="about__title-about"><?= $about['subtitle']; ?></p>
+						<?php endif; ?>
+						<?php if($about['title']) : ?>
+							<h2 class="about__title"><?= $about['title']; ?></h2>
+						<?php endif; ?>
 					</div>
-					<div class="about__iso">
-						<picture>
-							<source src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/about-img.png">
-							<img class="about__img" src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/about-img.webp" alt="about">
-						</picture>
-						<div class="about__iso-wrapper">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/iso.svg" alt="iso" class="about__iso-img">
-							<p class="about__iso-text">Each stage of raw materials processing and final product production complies with the quality control system (ISO 9001:2015)</p>
-						</div>
+					<div class="about__text-wrapper">
+						<?php if($about['text']) : ?>
+							<?= $about['text']; ?>
+						<?php endif; ?>
 					</div>
+				</div>
+				<div class="about__iso">
+					<picture>
+						<source src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/about-img.png">
+						<img class="about__img" src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/about-img.webp" alt="about">
+					</picture>
+					<?php if($about['img'] && $about['iso']) : ?>
+					<div class="about__iso-wrapper">
+						<img src="<?= $about['img']; ?>" alt="iso" class="about__iso-img">
+						<p class="about__iso-text"><?= $about['iso']; ?></p>
+					</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
+	</div>
+	<?php endif; ?>
+	<?php $prods = get_field('products'); ?>
+	<?php $bens = get_field('benefits'); ?>
 		<div class="products">
 			<div class="container">
 				<div class="products__wrapper">
 					<div class="products__prods">
+					<?php if($prods) : ?>
 						<div class="products__title-wrapper">
-							<p class="products__title-about">Technological microspheres</p>
-							<h2 class="products__title">PRODUCTS</h2>
+							<?php if($prods['subtitle']) : ?>
+								<p class="products__title-about"><?= $prods['subtitle']; ?></p>
+							<?php endif; ?>
+							<?php if($prods['title']) : ?>
+								<h2 class="products__title"><?= $prods['title']; ?></h2>
+							<?php endif; ?>
 						</div>
-						<p class="products__title-text">Our products are hollow mineral microspheres:</p>
-						<ul class="products__text-wrapper">
-							<li>GRANULITE™ are cenospheres obtained after processing and stabilization from renewable mineral resources of the electric power industry.</li>
-							<li>GRANSPHERE™ — ceramic spheres from a composition of available natural raw materials and environmentally friendly volcanic glass. To date, the products are produced according to the developed technology for preparing raw materials based on natural volcanic glass and the improved technological process of its spherolization.</li>
-						</ul>
+						<?php if($prods['textBeforeList']) : ?>
+							<p class="products__title-text"><?= $prods['textBeforeList']; ?></p>
+						<?php endif; ?>
+						<?php if($prods['listItems']) : ?>
+							<?= $prods['listItems']; ?>
+						<?php endif; ?>
+					<?php endif; ?>
 					</div>
 					<div class="products__benefits">
+					<?php if($bens) : ?>
 						<div class="products__ben-header">
 							<p class="products__ben-title">BENEFITS</p>
 							<p class="products__ben-info">Hollow spherolized mineral microspheres with a closed porosity provide:</p>
-							<img class="products__img" src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/yin-yang.svg" alt="products">
+							<img class="products__img" src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/yin-yang.svg" alt="products">
 						</div>
 						<ul class="products__ben-wrapper">
 							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-hex.svg" alt="icon">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-hex.svg" alt="icon">
 								<p>Homogeneous material with specified parameters</p>
 							</li>
 							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-square.svg" alt="icon">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-square.svg" alt="icon">
 								<p>Optimal strength-to-density ratio</p>
 							</li>
 							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-drop.svg" alt="icon">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-drop.svg" alt="icon">
 								<p>"Zero" water absorption and high adhesion to binders and structural materials in challenging hydrobaric conditions</p>
 							</li>
 							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame.svg" alt="icon">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame.svg" alt="icon">
 								<p>High thermal insulation and fire resistance</p>
 							</li>
 						</ul>
+					<?php endif; ?>
 					</div>
 				</div>
 			</div>
@@ -82,18 +101,18 @@
 		<div class="videos">
 			<div>
 				<p></p>
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/videos/video-01.gif" alt="balls">
+				<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/videos/video-01.gif" alt="balls">
 			</div>
 			<div>
 				<p></p>
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/videos/video-02.gif" alt="sphere">
+				<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/videos/video-02.gif" alt="sphere">
 			</div>
 		</div>
 		<div class="high-tech first">
 			<div class="container">
 				<div class="high-tech__wrapper">
 					<div class="high-tech__header">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/gran-logo-01.svg" alt="granulite-logo">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/gran-logo-01.svg" alt="granulite-logo">
 						<div class="high-tech__header-wrapper">
 							<h2>Granulite™</h2>
 							<h3>High-tech cenospheres</h3>
@@ -102,12 +121,12 @@
 					<div class="high-tech__img-wrapper">
 						<span>01</span>
 						<div>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-lightning.svg" alt="lightning">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-lightning.svg" alt="lightning">
 							<p>energy saving products</p>
 						</div>
 						<picture>
-							<source src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/energy-saving-01.png">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/energy-saving-01.webp" alt="saving-energy">
+							<source src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/energy-saving-01.png">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/energy-saving-01.webp" alt="saving-energy">
 						</picture>
 					</div>
 					<div class="high-tech__text-wrapper">
@@ -136,49 +155,49 @@
 							</button>
 						</div>
 						<div class="gran-tab__header">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/text-around.svg" alt="text">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/text-around.svg" alt="text">
 							<p>GRANULITE<span>500</span></p>
 						</div>
 						<div class="gran-tab__info">
 							<ul class="gran-tab__props">
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
 										<p>Particle size</p>
 									</div>
 									<p>500 µm</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-grid-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-grid-grey.svg" alt="icon">
 										<p>Strength</p>
 									</div>
 									<p>3000-6000 psi</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-square-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-square-grey.svg" alt="icon">
 										<p>Shell hardness</p>
 									</div>
 									<p>6 (the Mohs scale)</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-hex-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-hex-grey.svg" alt="icon">
 										<p>with Al<sub>2</sub>O<sub>3</sub></p>
 									</div>
 									<p>< 32-40%</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame-purple.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame-purple.svg" alt="icon">
 										<p>Melting point</p>
 									</div>
 									<p>1750°C</p>
 								</li>
 							</ul>
 							<div class="gran-tab__img">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/flame.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/flame.svg" alt="flame">
 								<div>
 									<p>Melting<br>point</p>
 									<p>1750°C</p>
@@ -199,35 +218,35 @@
 							</button>
 						</div>
 						<div class="gran-tab__header">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/text-around.svg" alt="text">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/text-around.svg" alt="text">
 							<p>GRANULITE<span>300</span></p>
 						</div>
 						<div class="gran-tab__info">
 							<ul class="gran-tab__props">
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
 										<p>Particle size</p>
 									</div>
 									<p>300 µm</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-hex-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-hex-grey.svg" alt="icon">
 										<p>with Al2O3</p>
 									</div>
 									<p>< 32-40%</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame-purple.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame-purple.svg" alt="icon">
 										<p>Melting point</p>
 									</div>
 									<p>1750°C</p>
 								</li>
 							</ul>
 							<div class="gran-tab__img">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/flame.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/flame.svg" alt="flame">
 								<div>
 									<p>Melting<br>point</p>
 									<p>1750°C</p>
@@ -248,35 +267,35 @@
 							</button>
 						</div>
 						<div class="gran-tab__header">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/text-around.svg" alt="text">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/text-around.svg" alt="text">
 							<p>GRANULITE<span>150</span></p>
 						</div>
 						<div class="gran-tab__info">
 							<ul class="gran-tab__props">
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
 										<p>Particle size</p>
 									</div>
 									<p>150 µm (97-100%)</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-hex-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-hex-grey.svg" alt="icon">
 										<p>with Al2O3</p>
 									</div>
 									<p>< 32-40%</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame-purple.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame-purple.svg" alt="icon">
 										<p>Melting point</p>
 									</div>
 									<p>1750°C</p>
 								</li>
 							</ul>
 							<div class="gran-tab__img">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/flame.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/flame.svg" alt="flame">
 								<div>
 									<p>Melting<br>point</p>
 									<p>1750°C</p>
@@ -291,7 +310,7 @@
 			<div class="container">
 				<div class="high-tech__wrapper">
 					<div class="high-tech__header">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/gran-logo-02.svg" alt="granulite-logo">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/gran-logo-02.svg" alt="granulite-logo">
 						<div class="high-tech__header-wrapper">
 							<h2>Gransphere™</h2>
 							<h3> Ceramic spheres from mineral natural raw materials</h3>
@@ -300,12 +319,12 @@
 					<div class="high-tech__img-wrapper">
 						<span>02</span>
 						<div>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-lightning.svg" alt="lightning">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-lightning.svg" alt="lightning">
 							<p>energy saving products</p>
 						</div>
 						<picture>
-							<source src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/energy-saving-02.png">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/energy-saving-02.webp" alt="saving-energy">
+							<source src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/energy-saving-02.png">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/energy-saving-02.webp" alt="saving-energy">
 						</picture>
 					</div>
 					<div class="high-tech__text-wrapper">
@@ -334,49 +353,49 @@
 							</button>
 						</div>
 						<div class="gran-tab__header">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/text-around-2.svg" alt="text">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/text-around-2.svg" alt="text">
 							<p>GRANSPHERE<span>5000</span></p>
 						</div>
 						<div class="gran-tab__info">
 							<ul class="gran-tab__props">
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-grey.svg" alt="icon">
 										<p>Bulk density</p>
 									</div>
 									<p>420-450 kg/m<sup>3</sup></p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
 										<p>Particle size (D50)</p>
 									</div>
 									<p>100 µm</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-white.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-white.svg" alt="icon">
 										<p>Apparent density</p>
 									</div>
 									<p>0.83-0.85 g/cm<sup>3</sup></p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-weight.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-weight.svg" alt="icon">
 										<p>Operating pressure</p>
 									</div>
 									<p>5000 psi</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-diamond-purple.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-diamond-purple.svg" alt="icon">
 										<p>Ratio of density and strength</p>
 									</div>
 								</li>
 							</ul>
 							<div class="gran-tab__img">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/diamond.svg" alt="flame">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/diamond-tablet.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/diamond.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/diamond-tablet.svg" alt="flame">
 								<div>
 									<p>Ratio<br>of density<br>and<br>strength</p>
 								</div>
@@ -396,49 +415,49 @@
 							</button>
 						</div>
 						<div class="gran-tab__header">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/text-around-2.svg" alt="text">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/text-around-2.svg" alt="text">
 							<p>GRANSPHERE<span>4000</span></p>
 						</div>
 						<div class="gran-tab__info">
 							<ul class="gran-tab__props">
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-grey.svg" alt="icon">
 										<p>Bulk density</p>
 									</div>
 									<p>420-450 kg/m<sup>3</sup></p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
 										<p>Particle size (D50)</p>
 									</div>
 									<p>100 µm</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-white.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-white.svg" alt="icon">
 										<p>Apparent density</p>
 									</div>
 									<p>0.80-0.83 g/cm<sup>3</sup></p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-weight.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-weight.svg" alt="icon">
 										<p>Operating pressure</p>
 									</div>
 									<p>4000 psi</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-diamond-purple.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-diamond-purple.svg" alt="icon">
 										<p>Ratio of density and strength</p>
 									</div>
 								</li>
 							</ul>
 							<div class="gran-tab__img">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/diamond.svg" alt="flame">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/diamond-tablet.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/diamond.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/diamond-tablet.svg" alt="flame">
 								<div>
 									<p>Ratio<br>of density<br>and<br>strength</p>
 								</div>
@@ -458,49 +477,49 @@
 							</button>
 						</div>
 						<div class="gran-tab__header">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/text-around-2.svg" alt="text">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/text-around-2.svg" alt="text">
 							<p>GRANSPHERE<span>3000</span></p>
 						</div>
 						<div class="gran-tab__info">
 							<ul class="gran-tab__props">
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-grey.svg" alt="icon">
 										<p>Bulk density</p>
 									</div>
 									<p>350-400 kg/m<sup>3</sup></p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle-grey.svg" alt="icon">
 										<p>Particle size (D50)</p>
 									</div>
 									<p>120 µm</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-white.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-cube-white.svg" alt="icon">
 										<p>Apparent density</p>
 									</div>
 									<p>0.76-0.80 g/cm<sup>3</sup></p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-weight.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-weight.svg" alt="icon">
 										<p>Operating pressure</p>
 									</div>
 									<p>3000 psi</p>
 								</li>
 								<li>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-diamond-purple.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-diamond-purple.svg" alt="icon">
 										<p>Ratio of density and strength</p>
 									</div>
 								</li>
 							</ul>
 							<div class="gran-tab__img">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/diamond.svg" alt="flame">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/diamond-tablet.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/diamond.svg" alt="flame">
+								<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/diamond-tablet.svg" alt="flame">
 								<div>
 									<p>Ratio<br>of density<br>and<br>strength</p>
 								</div>
@@ -516,7 +535,7 @@
             <?php while ( have_rows('lab') ) : the_row(); ?>
             <div class="lab__slide swiper-slide">
                 <div class="lab__left">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-scheme.svg" alt="scheme">
+                    <img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-scheme.svg" alt="scheme">
                     <div>
                         <p><?php the_sub_field('subtitle'); ?></p>
                         <p><?php the_sub_field('title'); ?></p>
@@ -538,7 +557,7 @@
 		<div class="prod">
 			<div class="container">
 				<div class="prod__wrapper">
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/location.svg" alt="location">
+					<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/location.svg" alt="location">
 					<div class="prod__cycle">
 						<div class="prod__title-wrapper">
 							<p>Full cycle</p>
@@ -552,8 +571,8 @@
 							<div class="prod__process">
 								<p>Innovative production<br>process</p>
 								<ul>
-									<li><img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-leaf-blue.svg" alt="marker">Full automated control of the raw material used, the procedure of its processing and the properties of the final product (adjustable strength and density)</li>
-									<li><img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-leaf-blue.svg" alt="marker">Minimal energy consumption</li>
+									<li><img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-leaf-blue.svg" alt="marker">Full automated control of the raw material used, the procedure of its processing and the properties of the final product (adjustable strength and density)</li>
+									<li><img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-leaf-blue.svg" alt="marker">Minimal energy consumption</li>
 								</ul>
 							</div>
 						</div>
@@ -566,13 +585,13 @@
 				<div class="prod-swiper__swiper swiper">
 					<div class="swiper-wrapper">
 						<div class="prod-swiper__slide swiper-slide">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/prod-1.jpg" alt="prod-img">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/prod-1.jpg" alt="prod-img">
 						</div>
 						<div class="prod-swiper__slide swiper-slide">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/prod-2.jpg" alt="prod-img">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/prod-2.jpg" alt="prod-img">
 						</div>
 						<div class="prod-swiper__slide swiper-slide">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/prod-3.jpg" alt="prod-img">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/prod-3.jpg" alt="prod-img">
 						</div>
 					</div>
 					<div class="prod-swiper__btns">
@@ -584,8 +603,8 @@
 		</div>
 		<div class="eco">
 			<picture>
-				<source src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/ecology.jpg">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/ecology.webp" alt="ecology-img">
+				<source src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/ecology.jpg">
+				<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/ecology.webp" alt="ecology-img">
 			</picture>
 			<div class="container">
 				<div class="eco__wrapper">
@@ -599,26 +618,26 @@
 								<p>The production is based on the use of available pure natural mineral raw materials, as well as the waste-free use of renewable mineral resources.</p>
 								<div>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-triangle-green.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-triangle-green.svg" alt="icon">
 									</div>
 									<p>Transfer of energy in the processes of heat treatment with IR radiation (without heat loss)</p>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-leaf-green.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-leaf-green.svg" alt="icon">
 									</div>
 									<p>Environmentally friendly technologies for processing mineral raw materials. Closed production cycle</p>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-lightning-green.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-lightning-green.svg" alt="icon">
 									</div>
 									<p>Technological processes run by electricity</p>
 									<div>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-arrow-green.svg" alt="icon">
+										<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-arrow-green.svg" alt="icon">
 									</div>
 									<p>Complete absence of exhaust flue gases, low noise and dust levels</p>
 								</div>
 							</div>
 							<div class="eco__iso">
 								<div class="eco__iso-wrapper">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/iso.svg" alt="iso">
+									<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/iso.svg" alt="iso">
 									<p>With integrated raw material sourcing, production processes and logistics, the highest quality standards are ensured throughout the entire supply chain.</p>
 								</div>
 							</div>
@@ -636,7 +655,7 @@
 							<h2>Efficiency of microspheres application</h2>
 						</div>
 						<li>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-ok-black.svg" alt="icon">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-ok-black.svg" alt="icon">
 							<div>
 								<p>
 									Economic effect
@@ -650,7 +669,7 @@
 							</div>
 						</li>
 						<li>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle.svg" alt="icon">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-circle.svg" alt="icon">
 							<div>
 								<p>
 									Spherical shape
@@ -664,7 +683,7 @@
 							</div>
 						</li>
 						<li>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame.svg" alt="icon">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-flame.svg" alt="icon">
 							<div>
 								<p>
 									Refractoriness
@@ -678,7 +697,7 @@
 							</div>
 						</li>
 						<li>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-grid.svg" alt="icon">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-grid.svg" alt="icon">
 							<div>
 								<p>
 									Strength
@@ -693,7 +712,7 @@
 							</div>
 						</li>
 						<li>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-wifi.svg" alt="icon">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-wifi.svg" alt="icon">
 							<div>
 								<p>
 									Heat and sound insulation
@@ -707,7 +726,7 @@
 							</div>
 						</li>
 						<li>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/icon-yin-yang.svg" alt="icon">
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-yin-yang.svg" alt="icon">
 							<div>
 								<p>
 									Resistance to aggressive environment
@@ -728,7 +747,7 @@
 			<div class="app__wrapper swiper-wrapper">
 				<div class="app__slide swiper-slide">
 					<div class="app__app">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-1.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-1.jpg" alt="app-img">
 						<div class="app__title-wrapper">
 							<p>Cenospheres and ceramospheres</p>
 							<h2>APPLICATION</h2>
@@ -739,7 +758,7 @@
 						</div>
 					</div>
 					<div class="app__materials">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-2.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-2.jpg" alt="app-img">
 						<p>Construction Materials</p>
 						<ul>
 							<li>Sealants and adhesives</li>
@@ -757,7 +776,7 @@
 				</div>
 				<div class="app__slide swiper-slide">
 					<div class="app__app">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-3.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-3.jpg" alt="app-img">
 						<div class="app__title-wrapper">
 							<p>Cenospheres and ceramospheres</p>
 							<h2>APPLICATION</h2>
@@ -768,7 +787,7 @@
 						</div>
 					</div>
 					<div class="app__materials">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-4.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-4.jpg" alt="app-img">
 						<p>Refractory materials</p>
 						<ul>
 							<li>Refractory bricks</li>
@@ -780,7 +799,7 @@
 				</div>
 				<div class="app__slide swiper-slide">
 					<div class="app__app">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-5.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-5.jpg" alt="app-img">
 						<div class="app__title-wrapper">
 							<p>Cenospheres and ceramospheres</p>
 							<h2>APPLICATION</h2>
@@ -791,7 +810,7 @@
 						</div>
 					</div>
 					<div class="app__materials">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-6.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-6.jpg" alt="app-img">
 						<p>Plastics and Composites</p>
 						<ul>
 							<li>Injection molding</li>
@@ -802,7 +821,7 @@
 				</div>
 				<div class="app__slide swiper-slide">
 					<div class="app__app">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-7.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-7.jpg" alt="app-img">
 						<div class="app__title-wrapper">
 							<p>Cenospheres and ceramospheres</p>
 							<h2>APPLICATION</h2>
@@ -813,7 +832,7 @@
 						</div>
 					</div>
 					<div class="app__materials">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-8.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-8.jpg" alt="app-img">
 						<p>Paints and coatings</p>
 						<ul>
 							<li>Powder coating</li>
@@ -825,7 +844,7 @@
 				</div>
 				<div class="app__slide swiper-slide">
 					<div class="app__app">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-9.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-9.jpg" alt="app-img">
 						<div class="app__title-wrapper">
 							<p>Cenospheres and ceramospheres</p>
 							<h2>APPLICATION</h2>
@@ -836,7 +855,7 @@
 						</div>
 					</div>
 					<div class="app__materials">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/app-10.jpg" alt="app-img">
+						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/app-10.jpg" alt="app-img">
 						<p>Modeling and restoration</p>
 						<ul>
 							<li>Putties</li>

@@ -14,7 +14,7 @@
 	<header class="header">
 		<div class="container">
 			<div class="header__wrapper">
-				<a class="header__logo" href="/"><img src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/logo.svg" alt="logo" class="header__logo-img"></a>
+				<a class="header__logo" href="/"><img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/logo.svg" alt="logo" class="header__logo-img"></a>
 				<nav class="header__parts">
 					<a href="#!" class="header__part-link">PRODUCTS</a>
 					<a href="#!" class="header__part-link">R&D</a>
@@ -31,7 +31,7 @@
                     <?php if(function_exists ( 'wpm_language_switcher' )) :
                         wpm_language_switcher ('select');
                     endif; ?>
-					<img tabindex="0" src="<?php echo get_template_directory_uri(); ?>/assets/dist/public/images/burger.svg" alt="burger" class="header__burger"></img>
+					<img tabindex="0" src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/burger.svg" alt="burger" class="header__burger"></img>
 				</div>
 			</div>
 		</div>
