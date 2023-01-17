@@ -1692,6 +1692,9 @@
 		height: fit-content;
 		align-self: center;
 		grid-auto-flow: row;
+		br {
+			display: none;
+		}
 		> li {
 			position: relative;
 			width: 100%;
@@ -2895,6 +2898,9 @@
 				> div {
 					> p {
 						color: #fff;
+						+ p {
+							margin-top: 20px;
+						}
 					}
 				}
 			}
@@ -3532,6 +3538,7 @@
 								line-height: 26px;
 								letter-spacing: 0.01em;
 								text-transform: uppercase;
+								width: fit-content;
 								+ a {
 									margin-top: 10px;
 								}

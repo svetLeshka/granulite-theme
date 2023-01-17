@@ -6,14 +6,14 @@
 				<div>
 					<div></div>
 					<div>
-						<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-tel.svg" alt="telephone">
-						<div>
-                            <?php if($footer['phones']) : ?>
-                                <?php foreach ($footer['phones'] as $phone) : ?>
-                                    <a href="tel:<?= $phone['phone']; ?>"><?= $phone['phone']; ?></a>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-						</div>
+						<?php if($footer['phones']) : ?>
+							<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/icon-tel.svg" alt="telephone">
+							<div>
+								<?php foreach ($footer['phones'] as $phone) : ?>
+									<a href="tel:<?= $phone['phone']; ?>"><?= $phone['phone']; ?></a>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>
 					</div>
 					<div>
                         <?php if($footer['mails']) : ?>
@@ -29,15 +29,31 @@
                         <?php endif; ?>
 					</div>
 					<div>
-						<p>«GRANULITE» CJSC © 2022</p>
+						<?php if($footer['copyright']) : ?>
+							<p><?= $footer['copyright']; ?></p>
+						<?php endif; ?>
 					</div>
 					<div>
-						<p>Chamber of Commerce (KvK)</p>
-						<p>67422519</p>
+						<?php if($footer['CoC']) : ?>
+							<?php $CoC = $footer['CoC']; ?>
+							<?php if($CoC['title']) : ?>
+								<p><?= $CoC['title']; ?></p>
+							<?php endif; ?>
+							<?php if($CoC['number']) : ?>
+								<p><?= $CoC['number']; ?></p>
+							<?php endif; ?>
+						<?php endif; ?>
 					</div>
 					<div>
-						<p>VAT Number</p>
-						<p>NL002491305B72</p>
+						<?php if($footer['nds']) : ?>
+							<?php $nds = $footer['nds']; ?>
+							<?php if($nds['title']) : ?>
+								<p><?= $nds['title']; ?></p>
+							<?php endif; ?>
+							<?php if($nds['number']) : ?>
+								<p><?= $nds['number']; ?></p>
+							<?php endif; ?>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>
