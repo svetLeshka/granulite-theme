@@ -54,25 +54,30 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		gap: 9px;
+		gap: 20px;
 		height: 26px;
-	}
-
-	&__lang-sep {
-		width: 2px;
-		height: 13px;
-		background-color: #fff;
-	}
-
-	&__lang {
-		font-family: 'Montserrat', sans-serif;
-		font-weight: 700;
-		font-size: 16px;
-		color: #fff;
-		opacity: 0.6;
-		transition: opacity 0.3s ease-in;
-		&.active {
-			opacity: 1;
+		position: relative;
+		&::before {
+			content: '';
+			width: 2px;
+			height: 13px;
+			background-color: #fff;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+		}
+		> li {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 700;
+			font-size: 16px;
+			text-transform: uppercase;
+			color: #fff;
+			opacity: 0.6;
+			transition: opacity 0.3s ease-in;
+			&.current-lang {
+				opacity: 1;
+			}
 		}
 	}
 
@@ -121,15 +126,15 @@
 		&__langs {
 			height: 18px;
 			padding: 4px 13px;
-			gap: 9.69px;
-		}
-		&__lang-sep {
-			width: 1.41px;
-			height: 9.43px;
-		}
-		&__lang {
-			line-height: 7.7px;
-			font-size: 10px;
+			gap: 20.79px;
+			&::before {
+				width: 1.41px;
+				height: 9.43px;
+			}
+			> li {
+				line-height: 7.7px;
+				font-size: 10px;
+			}
 		}
 	}
 

@@ -1,5 +1,9 @@
 <?php $footer = get_field('footer', 'options');?>
-<footer class="footer">
+<?php $nav = get_field('header', 'options'); ?>
+<?php $navIds = []; ?>
+<?php foreach($nav['nav'] as $link) array_push($navIds, $link['link']); ?>
+<?php $navCounter = count($navIds)-1; ?>
+<footer id="<?= $navIds[$navCounter]; ?>" class="footer">
 		<div class="container">
 			<div class="footer__wrapper">
 				<a href="#!"><img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/logo.svg" alt="logo"></a>

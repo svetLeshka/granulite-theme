@@ -1,4 +1,8 @@
 <?php get_header(); ?>
+<?php $nav = get_field('header', 'options'); ?>
+<?php $navIds = []; ?>
+<?php $navCounter = 0; ?>
+<?php foreach($nav['nav'] as $link) array_push($navIds, $link['link']); ?>
 <main>
     <?php $banner = get_field('banner'); ?>
 		<div class="main-video">
@@ -47,7 +51,7 @@
 	<?php endif; ?>
 	<?php $prods = get_field('products'); ?>
 	<?php $bens = get_field('benefits'); ?>
-	<div class="products">
+	<div id="<?= $navIds[$navCounter]; ?>" class="products">
 		<div class="container">
 			<div class="products__wrapper">
 				<div class="products__prods">
@@ -342,7 +346,8 @@
 		</div>
 	<?php endif; ?>
 	<?php if( have_rows('lab') ): ?>
-		<div class="lab swiper">
+		<?php $navCounter++; ?>
+		<div id="<?= $navIds[$navCounter]; ?>" class="lab swiper">
 			<div class="lab__wrapper swiper-wrapper">
 				<?php while ( have_rows('lab') ) : the_row(); ?>
 					<div class="lab__slide swiper-slide">
@@ -368,7 +373,8 @@
 	<?php endif; ?>
 	<?php $prod = get_field('prod'); ?>
 	<?php if($prod) : ?>
-		<div class="prod">
+		<?php $navCounter++; ?>
+		<div id="<?= $navIds[$navCounter]; ?>" class="prod">
 			<div class="container">
 				<div class="prod__wrapper">
 					<img src="<?= get_template_directory_uri(); ?>/assets/dist/public/images/location.svg" alt="location">
@@ -512,7 +518,8 @@
 	<?php endif; ?>
 	<?php $app = get_field('app'); ?>
 	<?php if($app['appSlide']) : ?>
-		<div class="app swiper">
+		<?php $navCounter++; ?>
+		<div id="<?= $navIds[$navCounter]; ?>" class="app swiper">
 			<div class="app__wrapper swiper-wrapper">
 				<?php foreach($app['appSlide'] as $item) : ?>
 					<div class="app__slide swiper-slide">
